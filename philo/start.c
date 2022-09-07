@@ -1,38 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftdenarakladim.c                                :+:      :+:    :+:   */
+/*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/30 13:14:25 by osarihan          #+#    #+#             */
-/*   Updated: 2022/08/30 13:16:12 by osarihan         ###   ########.fr       */
+/*   Created: 2022/09/07 14:48:44 by osarihan          #+#    #+#             */
+/*   Updated: 2022/09/07 16:32:07 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *str)
+void *start_cycle(void *philo)
 {
-	int				i;
-	int				s;
-	unsigned int	res;
+	t_philo *philo;
 
+	philo = (t_philo *)philo;
+	while (1)
+	{
+		eat(philo);
+		
+	}
+}
+
+int	start_action(t_data *data)
+{
+	int i;
+	pthread_t	*thread;
+
+	thread = malloc(sizeof(pthread_t *) * data->n_philo);
 	i = 0;
-	s = 1;
-	res = 0;
-	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-		i++;
-	if (str[i] == '-')
-		s = -1;
-	if (str[i] == '-' || str[i] == '+')
+	while (i < data->n_philo)
 	{
+		pthread_create(&thread[i], NULL, &start_cycle, (void *)(&data->philo[i]));
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	return (res * s);
 }

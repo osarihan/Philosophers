@@ -1,13 +1,14 @@
 CC = gcc
-CFLAGS =  -Wall -Wextra -Werror -pthread
 NAME = philo
-SRCS = *.c
+CFLG = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	@$(CC) $(CFLG) -o $(NAME)
 
 clean:
-	rm -rf $(NAME)
-re: clean all
+	rm -rf *.o
+
+fclean: clean
+	rm -rf $(NAME) 
