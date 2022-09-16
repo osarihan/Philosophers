@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_u.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/07 14:20:12 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/07 14:20:23 by osarihan         ###   ########.fr       */
+/*   Created: 2022/09/14 12:40:35 by osarihan          #+#    #+#             */
+/*   Updated: 2022/09/16 17:53:58 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_atoi(const char *str)
+int main(int ac, char  **av)
 {
-	int				i;
-	int				s;
-	unsigned int	res;
+	t_data	data;
 
-	i = 0;
-	s = 1;
-	res = 0;
-	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-		i++;
-	if (str[i] == '-')
-		s = -1;
-	if (str[i] == '-' || str[i] == '+')
+	if (ac == 5 || ac == 6)
 	{
-		i++;
+		init_args(ac, av, &data);
+		if (!(check_args(&data, 1)))
+			return(0);
+		start_threads(&data);
+		//write(1, "Her sey düzgun gitti!\n", 24);
+		return(0);
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	return (res * s);
+	else
+		write(2, "Error\nArgumanlar hatali!\n", 26);
+	return (0);
 }

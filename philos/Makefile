@@ -1,0 +1,16 @@
+NAME = philo
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+SRCS = *.c
+
+all: $(NAME)
+
+$(NAME):
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+
+clean:
+
+fclean:
+	rm -rf $(NAME)
+
+re: fclean all
