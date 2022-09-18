@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/16 19:15:06 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:21:39 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,16 @@ void	go_sleep(int num)
 
 void	msg(int time, char *str, t_philo *p)
 {	
+	if (p->dead != 0 || p->data->someone_died == 1 || \
+		p->data->all_eat >= p->data->n_philo)
+		return ;
 	pthread_mutex_lock(&p->data->speak);
 	time = time - p->data->s_time;
+	if (p->dead != 0 || p->data->someone_died == 1 || \
+		p->data->all_eat >= p->data->n_philo)
+		return ;
 	if (p->dead == 0)
-		printf("time:%d philo_no_%d, %s\n", time, p->id , str);
+		printf("time:%d, philo_no_%d, %s\n", time, p->id, str);
 	pthread_mutex_unlock(&p->data->speak);
 }
 
@@ -59,35 +65,34 @@ long long int	get_time(void)
 {
 	struct timeval	i;
 
-	gettimeofday(&i, NULL);
+	gettimeofday (&i, NULL);
 	return ((i.tv_sec * 1000) + (i.tv_usec / 1000));
 }
 
-int is_dead(t_data *data)
+int	is_dead(t_data *data)
 {
 	int	i;
 
-	i = 0;
-	while (i < data->n_philo)
+	i = -1;
+	while (i++ < data->n_philo)
 	{
-		pthread_mutex_lock(&data->death);
+		pthread_mutex_lock (&data->death);
 		if (data->philos[i].eat_count == data->notepme)
-		{
-			data->all_eat++;
-		}
+			set(data, i);
 		if ((data->philos[i].leat != 0 && data->die_time
-				< (int)(get_time() - data->philos[i].leat)))
+				< (int)(get_time() - data->philos[i].leat)) || \
+					(data->philos[i].f_init != 0 && data->die_time \
+						< (int)(get_time() - data->philos[i].f_init)))
 		{
 			if (data->philos->dead == 0)
-				msg(get_time(), "öldü\n", &data->philos[i]);
 			{
+				msg (get_time(), "öldü", &data->philos[i]);
 				data->philos->dead = 1;
 				data->someone_died = 1;
 			}
 			return (1);
 		}
-		pthread_mutex_unlock(&data->death);
-		i++;
+		pthread_mutex_unlock (&data->death);
 	}
 	return (0);
 }

@@ -6,25 +6,26 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:18 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/16 19:14:37 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/18 15:47:51 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int check_args(t_data *data, int a)
+int	check_args(t_data *data, int a)
 {
-	if (data->n_philo < 1 || data->die_time < 1 || data->eat_time < 1 || data->sleep_time < 1)
+	if (data->n_philo < 1 || data->die_time < 1 || \
+		data->eat_time < 1 || data->sleep_time < 1)
 	{
 		write(2, "Error\nHatali arguman\n", 22);
-		return(0);
+		return (0);
 	}
 	if (a == 0)
-		return(0);
-	return(1);
+		return (0);
+	return (1);
 }
 
-void init_args(int ac, char **av, t_data *data)
+void	init_args(int ac, char **av, t_data *data)
 {
 	data->n_philo = ft_atoi(av[1]);
 	data->die_time = ft_atoi(av[2]);
@@ -42,9 +43,9 @@ void init_args(int ac, char **av, t_data *data)
 	philos(data);
 }
 
-void philos(t_data *data)
+void	philos(t_data *data)
 {
-	int i;
+	int	i;
 
 	data->philos = malloc(sizeof(t_philo) * data->n_philo);
 	if (!data->philos)
@@ -71,10 +72,10 @@ void philos(t_data *data)
 	data->philos[i].r_fork = 0;
 }
 
-void forks(t_data *data)
+void	forks(t_data *data)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philo);
 	if (!data->forks)
