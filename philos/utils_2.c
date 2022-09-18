@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/18 16:21:47 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/18 16:44:29 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,28 @@ void	set(t_data *data, int i)
 {
 	data->all_eat++;
 	data->philos[i].eat_count = 0;
+}
+
+int	check_init_args(char **av)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	while (av[i])
+	{
+		while (av[i][j] != '\0')
+		{
+			if ((av[i][j] >= '0' && av[i][j] <= '9'))
+				j++;
+			else
+			{
+				printf("argümanlar sayi olmalidir\n");
+				return (0);
+			}
+		}
+		i++;
+	}
+	return (1);
 }
