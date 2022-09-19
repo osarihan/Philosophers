@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/18 16:03:38 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/19 12:10:57 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	start_threads(t_data *data)
 	int	i;
 
 	i = 0;
+	data->threads = malloc(sizeof(pthread_t) * data->n_philo);
 	while (i < data->n_philo)
 	{
 		pthread_create(&data->threads[i], NULL, &cycle, &data->philos[i]);
