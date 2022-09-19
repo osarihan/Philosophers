@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/18 16:35:31 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/19 12:46:46 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,9 @@ int	is_dead(t_data *data)
 {
 	int	i;
 
-	i = -1;
-	while (i++ < data->n_philo)
+	i = 0;
+	while (i < data->n_philo)
 	{
-		pthread_mutex_lock (&data->death);
 		if (data->philos[i].eat_count == data->notepme)
 			set(data, i);
 		if ((data->philos[i].leat != 0 && data->die_time
@@ -90,7 +89,7 @@ int	is_dead(t_data *data)
 			}
 			return (1);
 		}
-		pthread_mutex_unlock (&data->death);
+		i++;
 	}
 	return (0);
 }

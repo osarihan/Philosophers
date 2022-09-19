@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/19 12:14:02 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/19 13:12:22 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_free(t_data *data)
 	int	i;
 
 	i = 0;
+	pthread_mutex_destroy (&data->speak);
 	while (i < data->n_philo)
 	{
 		pthread_mutex_destroy (&data->forks[i]);
@@ -47,10 +48,11 @@ int	check_init_args(char **av)
 				j++;
 			else
 			{
-				printf("argümanlar sayi olmalidir\n");
+				printf("argümanlar pozitif ve sayi olmalidir\n");
 				return (0);
 			}
 		}
+		j = 0;
 		i++;
 	}
 	return (1);

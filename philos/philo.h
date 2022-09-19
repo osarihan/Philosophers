@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/18 16:40:49 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/19 13:01:51 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct s_data
 	int				all_eat;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	death;
 	pthread_mutex_t	speak;
 	pthread_t		*threads;
 }	t_data;

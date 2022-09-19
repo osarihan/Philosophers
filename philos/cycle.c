@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/19 12:10:57 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/19 12:41:57 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ int	start_threads(t_data *data)
 	{
 		is_dead(data);
 		if (data->someone_died == 1 || data->all_eat == data->n_philo)
-			break ;
-		if (data->all_eat == data->n_philo)
 			break ;
 	}
 	i = 0;
