@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/18 16:40:27 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/20 13:00:37 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	main(int ac, char **av)
 
 	if (ac == 5 || ac == 6)
 	{
-		if(!check_init_args(av))
-			return(0);
+		if (!check_init_args(av))
+			return (0);
 		init_args(ac, av, &data);
 		if (!(check_args(&data, 1)))
 			return (0);
