@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/20 16:36:17 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:42:08 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	philo_eat(t_philo *p)
 		p->data->all_eat == p->data->n_philo)
 		return ;
 	pthread_mutex_lock (&p->data->forks[p->l_fork]);
-	msg(get_time(), "Catal aldi", p);
+	msg(get_time(), "has taken a fork", p);
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat == p->data->n_philo)
 		return ;
 	pthread_mutex_lock (&p->data->forks[p->r_fork]);
-	msg(get_time(), "Catal aldi", p);
+	msg(get_time(), "has taken a fork", p);
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat == p->data->n_philo)
 		return ;
@@ -33,7 +33,7 @@ void	philo_eat(t_philo *p)
 		p->data->all_eat == p->data->n_philo)
 		return ;
 	p->eat_count++;
-	msg (p->leat, "Yemek yiyor", p);
+	msg (p->leat, "is eating", p);
 	go_sleep(p->data->eat_time);
 	pthread_mutex_unlock (&p->data->forks[p->l_fork]);
 	pthread_mutex_unlock (&p->data->forks[p->r_fork]);
@@ -45,7 +45,7 @@ void	philo_think(t_philo *p)
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat == p->data->n_philo)
 		return ;
-	msg(get_time(), "Düşünüyor", p);
+	msg(get_time(), "is thinking", p);
 }
 
 void	philo_sleep(t_philo *p)
@@ -53,7 +53,7 @@ void	philo_sleep(t_philo *p)
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat == p->data->n_philo)
 		return ;
-	msg(get_time(), "uyuyor", p);
+	msg(get_time(), "is sleeping", p);
 	go_sleep(p->data->sleep_time);
 }
 

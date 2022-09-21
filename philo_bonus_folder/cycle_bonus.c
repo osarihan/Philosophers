@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/20 16:32:22 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:37:56 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	philo_eat(t_philo *p)
 	if (p->data->someone_died > 0 || p->data->all_eat == p->data->n_philo)
 		exit(1);
 	sem_wait(p->data->forks);
-	msg(get_time(), "Has taken a fork", p);
+	msg(get_time(), "has taken a fork", p);
 	sem_wait(p->data->forks);
-	msg(get_time(), "Has taken a fork", p);
-	sem_wait(p->data->meal_check);	
+	msg(get_time(), "has taken a fork", p);
+	sem_wait(p->data->meal_check);
 	if (p->data->someone_died > 0 || p->data->all_eat == p->data->n_philo)
 		exit(1);
-	msg(get_time(), "Eating", p);
+	msg(get_time(), "is eating", p);
 	p->leat = get_time();
 	p->eat_count++;
 	sem_post(p->data->meal_check);
@@ -38,7 +38,7 @@ void	philo_think(t_philo *p)
 	p->f_init = get_time();
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat == p->data->n_philo)
-		exit(1) ;
+		exit(1);
 	msg(get_time(), "Is thinking", p);
 }
 
@@ -47,8 +47,8 @@ void	philo_sleep(t_philo *p)
 	p->f_init = get_time();
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat == p->data->n_philo)
-		exit(1) ;
-	msg(get_time(), "Is sleeping", p);
+		exit(1);
+	msg(get_time(), "is sleeping", p);
 	go_sleep(p->data->sleep_time);
 }
 
@@ -75,7 +75,7 @@ void	cycle(void *p)
 
 int	start_threads(t_data *data)
 {
-	int	i;
+	int		i;
 	t_philo	*phi;
 
 	i = -1;

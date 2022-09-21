@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/20 16:32:18 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:23:34 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <semaphore.h>
 # include <fcntl.h>
 # include <sys/stat.h>
-
 
 typedef struct s_data	t_data;
 

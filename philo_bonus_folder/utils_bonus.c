@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/20 16:32:43 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:39:19 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ void	msg(int time, char *str, t_philo *p)
 {	
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat >= p->data->n_philo)
-		exit(1) ;
+		exit(1);
 	sem_wait(p->data->speak);
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat >= p->data->n_philo)
-		exit(1) ;
+		exit(1);
 	time = time - p->data->s_time;
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat >= p->data->n_philo)
 		return ;
 	if (p->dead == 0)
-		printf("time:%d, philo_no_%d, %s\n", time, p->id, str);
+		printf("timestamp_in_ms:%d, philo_no_%d, %s\n", time, p->id, str);
 	sem_post(p->data->speak);
 }
 
@@ -70,33 +70,6 @@ long long int	get_time(void)
 	return ((i.tv_sec * 1000) + (i.tv_usec / 1000));
 }
 
-/*int	is_dead(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->n_philo)
-	{
-		if (data->philos[i].eat_count == data->notepme)
-			set(data, i);
-		if ((data->philos[i].leat != 0 && data->die_time
-				< (int)(get_time() - data->philos[i].leat)) || \
-					(data->philos[i].f_init != 0 && data->die_time \
-						< (int)(get_time() - data->philos[i].f_init)))
-		{
-			if (data->philos->dead == 0)
-			{
-				msg (get_time(), "Died", &data->philos[i]);
-				data->philos->dead = 1;
-				data->someone_died = 1;
-			}
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}*/
-
 void	*is_dead2(void *ptr)
 {
 	t_philo	*ph;
@@ -105,10 +78,11 @@ void	*is_dead2(void *ptr)
 	while (1)
 	{
 		sem_wait(ph->data->meal_check);
-		if (((get_time() - ph->leat) > ph->data->die_time && ph->leat != 0) ||\
-			 ((get_time() - ph->f_init) > ph->data->die_time && ph->f_init != 0))
+		if (((get_time() - ph->leat) > ph->data->die_time && ph->leat != 0) || \
+			((get_time() - ph->f_init) > \
+				ph->data->die_time && ph->f_init != 0))
 		{
-			msg(get_time(), "Died", ph);
+			msg(get_time(), "died", ph);
 				ph->data->someone_died = 1;
 			exit(1);
 		}

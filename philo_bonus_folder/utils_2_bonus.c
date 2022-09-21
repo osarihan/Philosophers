@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/20 16:32:40 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:24:31 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_init_args(char **av)
 		while (av[i][j] != '\0')
 		{
 			if ((av[i][j] >= '0' && av[i][j] <= '9') || \
-				 (av[i][j] == '+' && av[i][j + 1] != ' '))
+				(av[i][j] == '+' && av[i][j + 1] != ' '))
 				j++;
 			else
 			{
