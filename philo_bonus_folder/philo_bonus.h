@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/21 12:23:34 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:07:56 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,8 @@ void			philo_eat(t_philo *p);
 int				start_threads(t_data *data);
 int				is_dead(t_data *data);
 int				check_args_int(char **av);
-//int				ft_free(t_data *data);
 void			set(t_data *data, int i);
-int				check_init_args(char **av);
+int	check_init_args(int argc, char **argv);
 void			kill_the_child(t_data *data);
 void			*is_dead2(void *ptr);
 #endif

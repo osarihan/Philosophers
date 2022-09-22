@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/19 22:49:40 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:03:16 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ int				is_dead(t_data *data);
 int				check_args_int(char **av);
 int				ft_free(t_data *data);
 void			set(t_data *data, int i);
-int				check_init_args(char **av);
+int				check_init_args(int argc, char **argv);
 #endif

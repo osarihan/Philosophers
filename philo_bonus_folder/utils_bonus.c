@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/21 12:39:19 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:04:00 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	msg(int time, char *str, t_philo *p)
 		p->data->all_eat >= p->data->n_philo)
 		exit(1);
 	time = time - p->data->s_time;
+	if (time < 0)
+		time = 0;
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat >= p->data->n_philo)
 		return ;

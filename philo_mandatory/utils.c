@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/21 12:41:22 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:04:41 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	msg(int time, char *str, t_philo *p)
 		return ;
 	pthread_mutex_lock(&p->data->speak);
 	time = time - p->data->s_time;
+	if (time < 0)
+		time = 0;
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat >= p->data->n_philo)
 		return ;
