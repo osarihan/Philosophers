@@ -8,7 +8,7 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 	@echo filozoflar yemek için hazır!
 
 clean:
@@ -22,7 +22,7 @@ re: fclean all
 bonus: $(NAME_BONUS)
 
 $(NAME_BONUS):
-	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME_BONUS)
+	@$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME_BONUS)
 	@echo filozoflar yemek için hazır hem de bonus!	
 fclean_bonus:
 	@rm -rf $(NAME_BONUS)

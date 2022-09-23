@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/22 16:04:00 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/23 12:09:16 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	msg(int time, char *str, t_philo *p)
 		time = 0;
 	if (p->dead != 0 || p->data->someone_died == 1 || \
 		p->data->all_eat >= p->data->n_philo)
-		return ;
+		exit(1);
 	if (p->dead == 0)
 		printf("timestamp_in_ms:%d, philo_no_%d, %s\n", time, p->id, str);
 	sem_post(p->data->speak);
@@ -84,8 +84,9 @@ void	*is_dead2(void *ptr)
 			((get_time() - ph->f_init) > \
 				ph->data->die_time && ph->f_init != 0))
 		{
+			usleep(1500);
 			msg(get_time(), "died", ph);
-				ph->data->someone_died = 1;
+			ph->data->someone_died = 1;
 			exit(1);
 		}
 		sem_post(ph->data->meal_check);
