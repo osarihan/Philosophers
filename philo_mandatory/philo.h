@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/24 16:39:07 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:30:18 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct s_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	speak;
-	pthread_t		*threads;
 	pthread_mutex_t death;
+	pthread_t		*threads;
 }	t_data;
 
 /////////////////////UTILS///////////////////////////////
@@ -66,6 +66,7 @@ int				start_threads(t_data *data);
 int				is_dead(t_data *data);
 int				check_args_int(char **av);
 int				ft_free(t_data *data);
-void			set(t_data *data, int i);
+void			set(t_data *data);
 int				check_init_args(int argc, char **argv);
+void			set2(t_philo *p, int a);
 #endif

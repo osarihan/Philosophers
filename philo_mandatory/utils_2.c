@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/23 14:15:16 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:34:50 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ int	ft_free(t_data *data)
 	return (1);
 }
 
-void	set(t_data *data, int i)
+void	set(t_data *data)
 {
 	data->all_eat++;
-	data->philos[i].eat_count = 0;
 }
 
 int	check_init_args(int argc, char **argv)
@@ -57,4 +56,17 @@ int	check_init_args(int argc, char **argv)
 		i++;
 	}
 	return (1);
+}
+
+void	set2(t_philo *p, int a)
+{
+	if (a == 2)
+	{
+		p->eat_count++;
+		p->leat = get_time();
+	}
+	else if (a == 1)
+	{
+		p->f_init = get_time();
+	}
 }

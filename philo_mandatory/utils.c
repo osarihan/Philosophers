@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/24 16:38:49 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:46:59 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,9 @@ void	msg(int time, char *str, t_philo *p)
 {	
 	pthread_mutex_lock(&p->data->speak);
 	time = get_time() - p->s_time;
-	if ((p->data->someone_died != 0) || \
-		p->data->all_eat == p->data->n_philo)
-		return;
 	if (time < 0)
 		time = 0;
-	if ((p->data->someone_died != 0) || \
-		p->data->all_eat == p->data->n_philo)
-		return;
-	if (p->dead == 0 && p->data->someone_died == 0)
-		printf("timestamp_in_ms:%d, philo_no_%d, %s\n", time, p->id, str);
+	printf("timestamp_in_ms:%d, philo_no_%d, %s\n", time, p->id, str);
 	pthread_mutex_unlock(&p->data->speak);
 }
 
@@ -74,10 +67,11 @@ int	is_dead(t_data *data)
 	int	i;
 
 	i = 0;
+	pthread_mutex_lock(&data->death);
 	while (i < data->n_philo)
 	{
 		if (data->philos[i].eat_count == data->notepme)
-			set(data, i);
+			set(data);
 		if ((data->philos[i].leat != 0 && data->die_time
 				< (int)(get_time() - data->philos[i].leat)) || \
 					(data->philos[i].f_init != 0 && data->die_time \
@@ -93,5 +87,6 @@ int	is_dead(t_data *data)
 		}
 		i++;
 	}
+	pthread_mutex_unlock(&data->death);
 	return (0);
 }	

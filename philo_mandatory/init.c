@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:18 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/24 16:55:27 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:45:38 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_args(int ac, char **av, t_data *data)
 	data->all_eat = 0;
 	data->someone_died = 0;
 	pthread_mutex_init(&data->speak, NULL);
+	pthread_mutex_init(&data->death, NULL);
 	forks(data);
 	philos(data);
 }
@@ -56,7 +57,8 @@ void	philos(t_data *data)
 	while (i < data->n_philo - 1)
 	{
 		data->philos[i].eat_count = 0;
-		data->philos[i].data = data;
+		if (data)
+			data->philos[i].data = data;
 		data->philos[i].id = i + 1;
 		data->philos[i].dead = 0;
 		data->philos[i].l_fork = i;
@@ -64,7 +66,8 @@ void	philos(t_data *data)
 		i++;
 	}
 	data->philos[i].eat_count = 0;
-	data->philos[i].data = data;
+	if (data)
+		data->philos[i].data = data;
 	data->philos[i].id = i + 1;
 	data->philos[i].dead = 0;
 	data->philos[i].l_fork = i;
@@ -79,14 +82,14 @@ void	forks(t_data *data)
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philo);
 	if (!data->forks)
 	{
-		write(2, "Catallar icin yer ayirilamadi!\n", 32);
+		write(2, "Catallar icin yer ayirilamadi!\n", 45);
 		check_args(data, 0);
 	}
 	while (i < data->n_philo)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 		{
-			write(2, "catal sorunu\n", 14);
+			write(2, "catal sorunu\n", 16);
 			check_args(data, 0);
 		}
 		i++;
