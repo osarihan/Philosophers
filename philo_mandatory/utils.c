@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/23 14:10:25 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/24 15:15:09 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ void	go_sleep(int num)
 
 void	msg(int time, char *str, t_philo *p)
 {	
-	if (p->dead != 0 || p->data->someone_died == 1 || \
-		p->data->all_eat >= p->data->n_philo)
-		return ;
 	pthread_mutex_lock(&p->data->speak);
 	time = time - p->data->s_time;
+	if ((p->data->someone_died != 0) || \
+		p->data->all_eat == p->data->n_philo)
+		return;
 	if (time < 0)
 		time = 0;
-	if (p->dead != 0 || p->data->someone_died == 1 || \
-		p->data->all_eat >= p->data->n_philo)
-		return ;
-	if (p->dead == 0)
+	if ((p->data->someone_died != 0) || \
+		p->data->all_eat == p->data->n_philo)
+		return;
+	if (p->dead == 0 && p->data->someone_died == 0)
 		printf("timestamp_in_ms:%d, philo_no_%d, %s\n", time, p->id, str);
 	pthread_mutex_unlock(&p->data->speak);
 }

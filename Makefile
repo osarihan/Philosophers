@@ -4,12 +4,16 @@ SRCS = philo_mandatory/*.c
 SRCS_BONUS = philo_bonus_folder/*.c
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+RACEFLACGS = -g -fsanitize=thread
 
 all: $(NAME)
 
 $(NAME):
-	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 	@echo filozoflar yemek için hazır!
+
+race:
+	$(CC) $(CFLAGS) $(RACEFLACGS) $(SRCS) -o philo_race
 
 clean:
 	@rm -rf *.o

@@ -8,7 +8,8 @@
 		"vector": "c",
 		"__locale": "c",
 		"unistd.h": "c",
-		"iomanip": "c"
+		"iomanip": "c",
+		"bitset": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
