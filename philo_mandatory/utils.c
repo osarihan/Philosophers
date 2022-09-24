@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/24 15:15:09 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:38:49 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	go_sleep(int num)
 void	msg(int time, char *str, t_philo *p)
 {	
 	pthread_mutex_lock(&p->data->speak);
-	time = time - p->data->s_time;
+	time = get_time() - p->s_time;
 	if ((p->data->someone_died != 0) || \
 		p->data->all_eat == p->data->n_philo)
 		return;
@@ -94,4 +94,4 @@ int	is_dead(t_data *data)
 		i++;
 	}
 	return (0);
-}
+}	

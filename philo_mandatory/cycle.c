@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/24 15:14:37 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/24 16:43:02 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ void	*cycle(void *p)
 	ph = (t_philo *)p;
 	if (ph->id % 2 == 0)
 		go_sleep(ph->data->eat_time);
-	while ((ph->dead == 0 && ph->data->someone_died == 0) || \
-		ph->data->all_eat == ph->data->n_philo)
+	while (1)
 	{
 		if ((ph->dead != 0 && ph->data->someone_died == 0) || \
 			ph->data->all_eat == ph->data->n_philo)
@@ -91,7 +90,8 @@ int	start_threads(t_data *data)
 	data->threads = malloc(sizeof(pthread_t) * data->n_philo);
 	while (i < data->n_philo)
 	{
-		data->philos[i].data->s_time = get_time();
+		//data->philos[i].data->s_time = get_time();
+		data->philos[i].s_time = get_time();
 		pthread_create(&data->threads[i], NULL, &cycle, &data->philos[i]);
 		i++;
 	}
