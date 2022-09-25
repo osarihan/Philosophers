@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/24 17:34:50 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 00:05:41 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_free(t_data *data)
 	int	i;
 
 	i = 0;
+	pthread_mutex_unlock(&data->speak);
 	pthread_mutex_destroy (&data->speak);
 	while (i < data->n_philo)
 	{
@@ -64,9 +65,11 @@ void	set2(t_philo *p, int a)
 	{
 		p->eat_count++;
 		p->leat = get_time();
+		return ;
 	}
 	else if (a == 1)
 	{
 		p->f_init = get_time();
+		return ;
 	}
 }

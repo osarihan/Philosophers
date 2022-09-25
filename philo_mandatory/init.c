@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:18 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/24 17:45:38 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/24 23:56:56 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	philos(t_data *data)
 			data->philos[i].data = data;
 		data->philos[i].id = i + 1;
 		data->philos[i].dead = 0;
-		data->philos[i].l_fork = i;
-		data->philos[i].r_fork = i + 1;
+		data->philos[i].l_fork = i + 1;
+		data->philos[i].r_fork = i;
 		i++;
 	}
 	data->philos[i].eat_count = 0;
@@ -70,8 +70,8 @@ void	philos(t_data *data)
 		data->philos[i].data = data;
 	data->philos[i].id = i + 1;
 	data->philos[i].dead = 0;
-	data->philos[i].l_fork = i;
-	data->philos[i].r_fork = 0;
+	data->philos[i].l_fork = 0;
+	data->philos[i].r_fork = i;
 }
 
 void	forks(t_data *data)
@@ -82,14 +82,14 @@ void	forks(t_data *data)
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philo);
 	if (!data->forks)
 	{
-		write(2, "Catallar icin yer ayirilamadi!\n", 45);
+		write(2, "Catallar icin yer ayirilamadi!\n", 32);
 		check_args(data, 0);
 	}
 	while (i < data->n_philo)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 		{
-			write(2, "catal sorunu\n", 16);
+			write(2, "catal sorunu\n", 14);
 			check_args(data, 0);
 		}
 		i++;
