@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 00:08:18 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:16:34 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 void	philo_eat(t_philo *p)
 {
-	if (p == NULL)
-		return;
-	if (p->dead != 0)
-		return ;
-	pthread_mutex_lock(&p->data->forks[p->l_fork]);
-	msg(get_time(), "has taken a fork", p);
 	pthread_mutex_lock(&p->data->death);
-	set2(p, 1);
+	if ((p->data->someone_died != 0) || \
+		p->data->all_eat == p->data->n_philo)
+	{
+		pthread_mutex_unlock(&p->data->death);
+		return ;
+	}
 	pthread_mutex_unlock(&p->data->death);
+	pthread_mutex_lock(&p->data->forks[p->l_fork]);
 	pthread_mutex_lock(&p->data->forks[p->r_fork]);
+	msg(get_time(), "has taken a fork", p);
 	msg(get_time(), "has taken a fork", p);
 	pthread_mutex_lock(&p->data->death);
 	set2(p, 2);
@@ -37,15 +38,27 @@ void	philo_eat(t_philo *p)
 
 void	philo_think(t_philo *p)
 {
-	if (p == NULL)
-		return;
+	pthread_mutex_lock(&p->data->death);
+	if ((p->data->someone_died != 0) || \
+		p->data->all_eat == p->data->n_philo)
+	{
+		pthread_mutex_unlock(&p->data->death);
+		return ;
+	}
+	pthread_mutex_unlock(&p->data->death);
 	msg(get_time(), "is thinking", p);
 }
 
 void	philo_sleep(t_philo *p)
 {
-	if (p == NULL)
-		return;
+	pthread_mutex_lock(&p->data->death);
+	if ((p->data->someone_died != 0) || \
+		p->data->all_eat == p->data->n_philo)
+	{
+		pthread_mutex_unlock(&p->data->death);
+		return ;
+	}
+	pthread_mutex_unlock(&p->data->death);
 	msg(get_time(), "is sleeping", p);
 	go_sleep(p->data->sleep_time);
 }
@@ -59,11 +72,14 @@ void	*cycle(void *p)
 		go_sleep(ph->data->eat_time);
 	while (1)
 	{
-		if (p == NULL)
-			break ;
-		if ((ph->dead != 0 && ph->data->someone_died == 0) || \
-		ph->data->all_eat == ph->data->n_philo)
-			break ;
+		pthread_mutex_lock(&ph->data->death);
+		if ((ph->data->someone_died != 0) || \
+			ph->data->all_eat == ph->data->n_philo)
+		{
+			pthread_mutex_unlock(&ph->data->death);
+			break;
+		}
+		pthread_mutex_unlock(&ph->data->death);
 		philo_eat(ph);
 		philo_sleep(ph);
 		philo_think(ph);
@@ -93,8 +109,6 @@ int	start_threads(t_data *data)
 	i = 0;
 	while (i < data->n_philo)
 	{
-		if (data->someone_died == 1 || data->all_eat == data->n_philo)
-			break ;
 		pthread_join (data->threads[i], NULL);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/24 17:46:59 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 15:14:32 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	is_dead(t_data *data)
 				data->philos->dead = 1;
 				data->someone_died = 1;
 			}
+			pthread_mutex_unlock(&data->death);
 			return (1);
 		}
 		i++;

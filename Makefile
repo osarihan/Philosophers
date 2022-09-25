@@ -8,7 +8,7 @@ RACEFLACGS = -g -fsanitize=thread
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(SRCS)
 	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 	@echo filozoflar yemek için hazır!
 
