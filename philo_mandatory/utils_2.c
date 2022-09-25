@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 16:09:47 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:21:43 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,24 @@ int	ft_free(t_data *data)
 	int	i;
 
 	i = 0;
-	//pthread_mutex_unlock(&data->speak);
-	//pthread_mutex_destroy (&data->speak);
 	while (i < data->n_philo)
 	{
-		//pthread_mutex_destroy (&data->forks[i]);
 		pthread_detach (data->threads[i]);
 		i++;
 	}
 	return (1);
 }
 
-void	set(t_data *data)
+void	set(t_data *data, int i)
 {
-	data->all_eat++;
+	if (i == 1)
+		data->all_eat++;
+	if (i == 2)
+	{
+		msg (get_time(), "died", &data->philos[i]);
+		data->philos->dead = 1;
+		data->someone_died = 1;
+	}
 }
 
 int	check_init_args(int argc, char **argv)
@@ -72,4 +76,17 @@ void	set2(t_philo *p, int a)
 		p->f_init = get_time();
 		return ;
 	}
+}
+
+int		death_lock(t_philo *p)
+{
+	pthread_mutex_lock(&p->data->death);
+	if ((p->data->someone_died != 0) || \
+		p->data->all_eat == p->data->n_philo)
+	{
+		pthread_mutex_unlock(&p->data->death);
+		return (0);
+	}
+	pthread_mutex_unlock(&p->data->death);
+	return (1);
 }

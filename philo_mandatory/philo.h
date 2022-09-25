@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/24 17:30:18 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:22:26 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int				start_threads(t_data *data);
 int				is_dead(t_data *data);
 int				check_args_int(char **av);
 int				ft_free(t_data *data);
-void			set(t_data *data);
+void			set(t_data *data, int i);
 int				check_init_args(int argc, char **argv);
 void			set2(t_philo *p, int a);
+int				death_lock(t_philo *p);
 #endif

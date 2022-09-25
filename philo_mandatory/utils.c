@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 15:14:32 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:10:42 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	is_dead(t_data *data)
 	while (i < data->n_philo)
 	{
 		if (data->philos[i].eat_count == data->notepme)
-			set(data);
+			set(data, 1);
 		if ((data->philos[i].leat != 0 && data->die_time
 				< (int)(get_time() - data->philos[i].leat)) || \
 					(data->philos[i].f_init != 0 && data->die_time \
@@ -79,9 +79,7 @@ int	is_dead(t_data *data)
 		{
 			if (data->philos->dead == 0)
 			{
-				msg (get_time(), "died", &data->philos[i]);
-				data->philos->dead = 1;
-				data->someone_died = 1;
+				set(data, 2);
 			}
 			pthread_mutex_unlock(&data->death);
 			return (1);
