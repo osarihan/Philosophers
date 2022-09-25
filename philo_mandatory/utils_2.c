@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 16:21:43 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 18:28:16 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int	ft_free(t_data *data)
 	return (1);
 }
 
-void	set(t_data *data, int i)
+void	set(t_data *data, int i, int k)
 {
 	if (i == 1)
 		data->all_eat++;
 	if (i == 2)
 	{
-		msg (get_time(), "died", &data->philos[i]);
+		msg (get_time(), "died", &data->philos[k]);
 		data->philos->dead = 1;
 		data->someone_died = 1;
 	}
@@ -71,7 +71,7 @@ void	set2(t_philo *p, int a)
 		p->leat = get_time();
 		return ;
 	}
-	else if (a == 1)
+	if (a == 1)
 	{
 		p->f_init = get_time();
 		return ;

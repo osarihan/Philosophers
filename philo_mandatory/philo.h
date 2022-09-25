@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 16:22:26 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 18:10:49 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_data
 	int				notepme;
 	int				someone_died;
 	int				all_eat;
+	int				died_someone;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	speak;
@@ -63,10 +64,10 @@ void			philos(t_data *data);
 ///////////////////SIMULATION/////////////////////////////
 void			philo_eat(t_philo *p);
 int				start_threads(t_data *data);
-int				is_dead(t_data *data);
+int				is_dead(t_data *data, int t);
 int				check_args_int(char **av);
 int				ft_free(t_data *data);
-void			set(t_data *data, int i);
+void			set(t_data *data, int i, int k);
 int				check_init_args(int argc, char **argv);
 void			set2(t_philo *p, int a);
 int				death_lock(t_philo *p);

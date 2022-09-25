@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 16:10:42 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 18:37:39 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ long long int	get_time(void)
 	return ((i.tv_sec * 1000) + (i.tv_usec / 1000));
 }
 
-int	is_dead(t_data *data)
+int	is_dead(t_data *data, int t)
 {
 	int	i;
 
@@ -71,15 +71,15 @@ int	is_dead(t_data *data)
 	while (i < data->n_philo)
 	{
 		if (data->philos[i].eat_count == data->notepme)
-			set(data, 1);
+			set(data, 1, 0);
 		if ((data->philos[i].leat != 0 && data->die_time
 				< (int)(get_time() - data->philos[i].leat)) || \
 					(data->philos[i].f_init != 0 && data->die_time \
-						< (int)(get_time() - data->philos[i].f_init)))
+						< (int)(get_time() - data->philos[i].f_init)) || t == 2)
 		{
 			if (data->philos->dead == 0)
 			{
-				set(data, 2);
+				set(data, 2, i);
 			}
 			pthread_mutex_unlock(&data->death);
 			return (1);
