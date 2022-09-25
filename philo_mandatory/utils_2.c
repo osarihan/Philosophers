@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 21:22:31 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 22:20:08 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set(t_data *data, int i, int k)
 		data->all_eat++;
 	if (i == 2)
 	{
-		msg (get_time(), "died", &data->philos[k]);
+		msg (get_time() - data->philos[k].s_time, "died", &data->philos[k]);
 		data->philos->dead = 1;
 		data->someone_died = 1;
 	}

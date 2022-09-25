@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 18:37:39 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 22:18:30 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,22 @@ int	ft_atoi(const char *str)
 	return (res * s);
 }
 
-void	go_sleep(int num)
+void	go_sleep(int num, t_philo *ph)
 {
 	long long int	time;
 
 	time = get_time();
 	while (num > get_time() - time)
+	{
+		if (!death_lock(ph))
+			break;
 		usleep(50);
+	}
 }
 
 void	msg(int time, char *str, t_philo *p)
 {	
 	pthread_mutex_lock(&p->data->speak);
-	time = get_time() - p->s_time;
 	if (time < 0)
 		time = 0;
 	printf("timestamp_in_ms:%d, philo_no_%d, %s\n", time, p->id, str);
@@ -62,7 +65,7 @@ long long int	get_time(void)
 	return ((i.tv_sec * 1000) + (i.tv_usec / 1000));
 }
 
-int	is_dead(t_data *data, int t)
+int	is_dead(t_data *data)
 {
 	int	i;
 
@@ -75,7 +78,7 @@ int	is_dead(t_data *data, int t)
 		if ((data->philos[i].leat != 0 && data->die_time
 				< (int)(get_time() - data->philos[i].leat)) || \
 					(data->philos[i].f_init != 0 && data->die_time \
-						< (int)(get_time() - data->philos[i].f_init)) || t == 2)
+						< (int)(get_time() - data->philos[i].f_init)))
 		{
 			if (data->philos->dead == 0)
 			{

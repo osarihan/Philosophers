@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:18 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 18:11:15 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 21:55:24 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	init_args(int ac, char **av, t_data *data)
 		data->notepme = -1;
 	data->all_eat = 0;
 	data->someone_died = 0;
-	data->died_someone = 0;
 	pthread_mutex_init(&data->speak, NULL);
 	pthread_mutex_init(&data->death, NULL);
 	forks(data);

@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/23 12:09:16 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 22:08:13 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	*is_dead2(void *ptr)
 			((get_time() - ph->f_init) > \
 				ph->data->die_time && ph->f_init != 0))
 		{
-			usleep(1500);
 			msg(get_time(), "died", ph);
 			ph->data->someone_died = 1;
 			exit(1);
