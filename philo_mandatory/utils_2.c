@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 18:28:16 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 21:22:31 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	ft_free(t_data *data)
 	i = 0;
 	while (i < data->n_philo)
 	{
-		pthread_detach (data->threads[i]);
+		if (data->threads[i])
+			pthread_detach (data->threads[i]);
 		i++;
 	}
 	return (1);
