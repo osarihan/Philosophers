@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 22:18:30 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/26 12:59:19 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,12 @@ int	is_dead(t_data *data)
 					(data->philos[i].f_init != 0 && data->die_time \
 						< (int)(get_time() - data->philos[i].f_init)))
 		{
-			if (data->philos->dead == 0)
-			{
-				set(data, 2, i);
-			}
+			set(data, 2, i);
 			pthread_mutex_unlock(&data->death);
 			return (1);
 		}
+		//usleep(50);
+		//printf("%lld\n", get_time() - data->philos[i].leat);
 		i++;
 	}
 	pthread_mutex_unlock(&data->death);

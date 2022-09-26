@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 21:21:34 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/26 12:17:38 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 		if (!(check_args(&data, 1)))
 			return (0);
 		start_threads (&data);
-		//ft_free (&data);
+		ft_free (&data);
 		return (0);
 	}
 	else
