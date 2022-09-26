@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 16:05:20 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:05:42 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,14 @@ int	main(int ac, char **av)
 	else
 		write(2, "Error\nArgumanlar hatali!\n", 26);
 	return (0);
+}
+
+void	one_philo(t_philo *p)
+{
+	pthread_mutex_lock(&p->data->forks[p->l_fork]);
+	msg(get_time(), "has taken a fork", p);
+	go_sleep(p->data->die_time);
+	msg(get_time(), "died", p);
+	pthread_mutex_unlock(&p->data->forks[p->l_fork]);
+	return ;
 }

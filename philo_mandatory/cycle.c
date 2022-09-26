@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/26 16:41:42 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:05:00 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	philo_eat(t_philo *p)
 {
 	if (!death_lock(p))
-		return;
+		return ;
 	pthread_mutex_lock(&p->data->forks[p->l_fork]);
 	pthread_mutex_lock(&p->data->forks[p->r_fork]);
 	if (!death_lock(p))
-		return;
+		return ;
 	msg(get_time(), "has taken a fork", p);
 	msg(get_time(), "has taken a fork", p);
 	pthread_mutex_lock(&p->data->death);
@@ -28,7 +28,7 @@ void	philo_eat(t_philo *p)
 	set2(p, 2);
 	pthread_mutex_unlock(&p->data->death);
 	if (!death_lock(p))
-		return;
+		return ;
 	msg (get_time(), "is eating", p);
 	go_sleep(p->data->eat_time);
 	pthread_mutex_unlock(&p->data->forks[p->l_fork]);
@@ -39,14 +39,14 @@ void	philo_eat(t_philo *p)
 void	philo_think(t_philo *p)
 {
 	if (!death_lock(p))
-		return;
+		return ;
 	msg(get_time(), "is thinking", p);
 }
 
 void	philo_sleep(t_philo *p)
 {
 	if (!death_lock(p))
-		return;
+		return ;
 	msg(get_time(), "is sleeping", p);
 	go_sleep(p->data->sleep_time);
 }
@@ -92,7 +92,8 @@ int	start_threads(t_data *data)
 	while (data->someone_died == 0)
 	{
 		is_dead(data);
-		if (data->someone_died == 1 || data->all_eat == data->n_philo || data->n_philo == 1)
+		if (data->someone_died == 1 || \
+			data->all_eat == data->n_philo || data->n_philo == 1)
 			break ;
 	}
 	i = 0;
@@ -102,14 +103,4 @@ int	start_threads(t_data *data)
 		i++;
 	}
 	return (1);
-}
-
-void	one_philo(t_philo *p)
-{
-	pthread_mutex_lock(&p->data->forks[p->l_fork]);
-	msg(get_time(), "has taken a fork", p);
-	go_sleep(p->data->die_time);
-	msg(get_time(), "died", p);
-	pthread_mutex_unlock(&p->data->forks[p->l_fork]);
-	return;
 }

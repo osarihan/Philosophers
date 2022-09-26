@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 16:21:43 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:08:25 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	set2(t_philo *p, int a)
 	}
 }
 
-int		death_lock(t_philo *p)
+int	death_lock(t_philo *p)
 {
 	pthread_mutex_lock(&p->data->death);
 	if ((p->data->someone_died != 0) || \
