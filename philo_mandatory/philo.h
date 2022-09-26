@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 22:11:31 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:06:37 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_philo
 	struct s_data	*data;
 	long long int	leat;
 	long long int	f_init;
-	long long int 	s_time;
+	long long int	s_time;
 }	t_philo;
 
 typedef struct s_data
@@ -46,7 +46,7 @@ typedef struct s_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	speak;
-	pthread_mutex_t death;
+	pthread_mutex_t	death;
 	pthread_t		*threads;
 }	t_data;
 

@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/26 12:59:19 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:10:36 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	go_sleep(int num, t_philo *ph)
 	while (num > get_time() - time)
 	{
 		if (!death_lock(ph))
-			break;
+			break ;
 		usleep(50);
 	}
 }
@@ -75,17 +75,17 @@ int	is_dead(t_data *data)
 	{
 		if (data->philos[i].eat_count == data->notepme)
 			set(data, 1, 0);
-		if ((data->philos[i].leat != 0 && data->die_time
-				< (int)(get_time() - data->philos[i].leat)) || \
-					(data->philos[i].f_init != 0 && data->die_time \
-						< (int)(get_time() - data->philos[i].f_init)))
+		if (((data->philos[i].leat != 0 && data->die_time \
+			< (int)(get_time() - data->philos[i].leat)) || \
+				(data->philos[i].f_init != 0 && data->die_time < \
+					(int)(get_time() - data->philos[i].f_init))) && \
+						((data->die_time < data->sleep_time + data->eat_time) \
+							|| data->n_philo % 2 == 1))
 		{
 			set(data, 2, i);
 			pthread_mutex_unlock(&data->death);
 			return (1);
 		}
-		//usleep(50);
-		//printf("%lld\n", get_time() - data->philos[i].leat);
 		i++;
 	}
 	pthread_mutex_unlock(&data->death);

@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/26 13:03:11 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/26 15:24:41 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,27 @@ int	check_init_args(int argc, char **argv)
 
 void	set2(t_philo *p, int a)
 {
+	pthread_mutex_lock(&p->data->death);
 	if (a == 2)
 	{
+		if (p->data->n_philo % 2 == 1 || \
+			p->data->die_time < (p->data->eat_time + p->data->sleep_time))
+			usleep(300);
 		p->eat_count++;
 		p->leat = get_time();
-		usleep(500);
+		pthread_mutex_unlock(&p->data->death);
 		return ;
 	}
 	if (a == 1)
 	{
 		p->f_init = get_time();
+		pthread_mutex_unlock(&p->data->death);
 		return ;
 	}
+	pthread_mutex_unlock(&p->data->death);
 }
 
-int		death_lock(t_philo *p)
+int	death_lock(t_philo *p)
 {
 	pthread_mutex_lock(&p->data->death);
 	if ((p->data->someone_died != 0) || \
