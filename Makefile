@@ -25,9 +25,6 @@ re: fclean all
 
 bonus: $(NAME_BONUS)
 
-racebonus:
-	$(CC) $(CFLAGS) $(SRCS_BONUS) $(RACEFLACGS) -o race_bonus	
-
 $(NAME_BONUS):
 	@$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME_BONUS)
 	@echo filozoflar yemek için hazır hem de bonus!	

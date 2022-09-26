@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/26 15:06:37 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/26 16:40:39 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_philo
 	struct s_data	*data;
 	long long int	leat;
 	long long int	f_init;
-	long long int	s_time;
+	long long int 	s_time;
 }	t_philo;
 
 typedef struct s_data
@@ -46,29 +46,29 @@ typedef struct s_data
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	speak;
-	pthread_mutex_t	death;
+	pthread_mutex_t death;
 	pthread_t		*threads;
 }	t_data;
 
 /////////////////////UTILS///////////////////////////////
-void			go_sleep(int num, t_philo *ph);
+void			go_sleep(int num);
 long long int	get_time(void);
 void			msg(int time, char *str, t_philo *p);
 int				ft_atoi(const char *str);
-void			set2(t_philo *p, int a);
-void			set(t_data *data, int i, int k);
 ////////////////////INIT_UTILS///////////////////////////
 int				check_args(t_data *data, int a);
-int				check_init_args(int argc, char **argv);
 void			init_args(int ac, char **av, t_data *data);
 void			forks(t_data *data);
 void			philos(t_data *data);
 ///////////////////SIMULATION/////////////////////////////
 void			philo_eat(t_philo *p);
-void			philo_sleep(t_philo *p);
-void			philo_think(t_philo *p);
 int				start_threads(t_data *data);
 int				is_dead(t_data *data);
+int				check_args_int(char **av);
 int				ft_free(t_data *data);
+void			set(t_data *data, int i);
+int				check_init_args(int argc, char **argv);
+void			set2(t_philo *p, int a);
 int				death_lock(t_philo *p);
+void			one_philo(t_philo *p);
 #endif

@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/26 13:51:08 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:10:48 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct s_philo
 	struct s_data	*data;
 	long long int	leat;
 	long long int	f_init;
-	long long int	s_time;
 	pthread_t		death_check;
 	pid_t			proc_id;
 }	t_philo;
@@ -48,11 +47,11 @@ typedef struct s_data
 	int				sleep_time;
 	int				notepme;
 	int				someone_died;
+	long long int	s_time;
 	int				all_eat;
 	t_philo			*philos;
 	sem_t			*forks;
 	sem_t			*speak;
-	sem_t			*dead;
 	pthread_mutex_t	death;
 	sem_t			*meal_check;
 }	t_data;

@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/26 15:24:41 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/25 16:21:43 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,19 @@ int	ft_free(t_data *data)
 	i = 0;
 	while (i < data->n_philo)
 	{
-		if (data->threads[i])
-			pthread_detach (data->threads[i]);
+		pthread_detach (data->threads[i]);
 		i++;
 	}
 	return (1);
 }
 
-void	set(t_data *data, int i, int k)
+void	set(t_data *data, int i)
 {
 	if (i == 1)
 		data->all_eat++;
 	if (i == 2)
 	{
-		msg (get_time() - data->philos[k].s_time, "died", &data->philos[k]);
+		msg (get_time(), "died", &data->philos[i]);
 		data->philos->dead = 1;
 		data->someone_died = 1;
 	}
@@ -66,27 +65,20 @@ int	check_init_args(int argc, char **argv)
 
 void	set2(t_philo *p, int a)
 {
-	pthread_mutex_lock(&p->data->death);
 	if (a == 2)
 	{
-		if (p->data->n_philo % 2 == 1 || \
-			p->data->die_time < (p->data->eat_time + p->data->sleep_time))
-			usleep(300);
 		p->eat_count++;
 		p->leat = get_time();
-		pthread_mutex_unlock(&p->data->death);
 		return ;
 	}
-	if (a == 1)
+	else if (a == 1)
 	{
 		p->f_init = get_time();
-		pthread_mutex_unlock(&p->data->death);
 		return ;
 	}
-	pthread_mutex_unlock(&p->data->death);
 }
 
-int	death_lock(t_philo *p)
+int		death_lock(t_philo *p)
 {
 	pthread_mutex_lock(&p->data->death);
 	if ((p->data->someone_died != 0) || \
