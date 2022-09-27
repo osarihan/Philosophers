@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/26 17:05:00 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:49:44 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	philo_eat(t_philo *p)
 {
+	//printf("girdim\n");
 	if (!death_lock(p))
 		return ;
 	pthread_mutex_lock(&p->data->forks[p->l_fork]);

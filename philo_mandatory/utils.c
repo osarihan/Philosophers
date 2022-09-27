@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/25 16:10:42 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/27 13:46:12 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	msg(int time, char *str, t_philo *p)
 	time = get_time() - p->s_time;
 	if (time < 0)
 		time = 0;
-	printf("timestamp_in_ms:%d, philo_no_%d, %s\n", time, p->id, str);
+	printf("%d %d %s\n", time, p->id, str);
 	pthread_mutex_unlock(&p->data->speak);
 }
 
@@ -71,7 +71,7 @@ int	is_dead(t_data *data)
 	while (i < data->n_philo)
 	{
 		if (data->philos[i].eat_count == data->notepme)
-			set(data, 1);
+			set(data, 1, 0);
 		if ((data->philos[i].leat != 0 && data->die_time
 				< (int)(get_time() - data->philos[i].leat)) || \
 					(data->philos[i].f_init != 0 && data->die_time \
@@ -79,7 +79,7 @@ int	is_dead(t_data *data)
 		{
 			if (data->philos->dead == 0)
 			{
-				set(data, 2);
+				set(data, 2, i);
 			}
 			pthread_mutex_unlock(&data->death);
 			return (1);
