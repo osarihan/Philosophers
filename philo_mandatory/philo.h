@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/27 13:45:30 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:44:07 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_philo
 	int				eat_count;
 	struct s_data	*data;
 	long long int	leat;
-	long long int	f_init;
 	long long int	s_time;
 }	t_philo;
 

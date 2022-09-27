@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/27 13:45:18 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:43:58 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,6 @@ void	set2(t_philo *p, int a)
 	{
 		p->eat_count++;
 		p->leat = get_time();
-		return ;
-	}
-	else if (a == 1)
-	{
-		p->f_init = get_time();
 		return ;
 	}
 }

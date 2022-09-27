@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/27 13:46:12 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:43:43 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,8 @@ int	is_dead(t_data *data)
 	{
 		if (data->philos[i].eat_count == data->notepme)
 			set(data, 1, 0);
-		if ((data->philos[i].leat != 0 && data->die_time
-				< (int)(get_time() - data->philos[i].leat)) || \
-					(data->philos[i].f_init != 0 && data->die_time \
-						< (int)(get_time() - data->philos[i].f_init)))
+		if (data->philos[i].leat != 0 && data->die_time \
+			< (int)(get_time() - data->philos[i].leat))
 		{
 			if (data->philos->dead == 0)
 			{

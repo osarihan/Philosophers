@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/27 13:49:44 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/27 17:40:34 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	philo_eat(t_philo *p)
 {
-	//printf("girdim\n");
 	if (!death_lock(p))
 		return ;
 	pthread_mutex_lock(&p->data->forks[p->l_fork]);
@@ -23,8 +22,6 @@ void	philo_eat(t_philo *p)
 		return ;
 	msg(get_time(), "has taken a fork", p);
 	msg(get_time(), "has taken a fork", p);
-	pthread_mutex_lock(&p->data->death);
-	pthread_mutex_unlock(&p->data->death);
 	pthread_mutex_lock(&p->data->death);
 	set2(p, 2);
 	pthread_mutex_unlock(&p->data->death);

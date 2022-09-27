@@ -29,6 +29,9 @@ $(NAME_BONUS): $(SRCS_BONUS)
 	@$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME_BONUS)
 	@echo filozoflar yemek için hazır hem de bonus!
 
+racebonus:
+	$(CC) $(CFLAGS) $(RACEFLACGS) $(SRCS_BONUS) -o bonus_race
+
 fclean_bonus:
 	@rm -rf $(NAME_BONUS)
 
