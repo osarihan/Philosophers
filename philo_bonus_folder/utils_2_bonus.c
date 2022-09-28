@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/23 14:14:49 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:32:20 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,18 @@ void	kill_the_child(t_data *data)
 	sem_unlink("/philo_forks");
 	sem_unlink("/philo_write");
 	sem_unlink("/philo_mealcheck");
+	sem_unlink("/philo_death");
+}
+
+int	death_lock(t_philo *p)
+{
+	sem_wait(p->data->death);
+	if ((p->data->someone_died != 0) || \
+		p->data->all_eat == p->data->n_philo)
+	{
+		sem_post(p->data->death);
+		return (0);
+	}
+	sem_post(p->data->death);
+	return (1);
 }

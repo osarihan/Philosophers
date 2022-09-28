@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/23 12:09:16 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:37:16 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,13 @@ void	go_sleep(int num)
 
 void	msg(int time, char *str, t_philo *p)
 {	
-	if (p->dead != 0 || p->data->someone_died == 1 || \
-		p->data->all_eat >= p->data->n_philo)
-		exit(1);
 	sem_wait(p->data->speak);
-	if (p->dead != 0 || p->data->someone_died == 1 || \
-		p->data->all_eat >= p->data->n_philo)
+	if (death_lock(p) != 1)
 		exit(1);
 	time = time - p->data->s_time;
 	if (time < 0)
 		time = 0;
-	if (p->dead != 0 || p->data->someone_died == 1 || \
-		p->data->all_eat >= p->data->n_philo)
-		exit(1);
-	if (p->dead == 0)
+	if (p->dead == 0 && death_lock(p) == 1)
 		printf("timestamp_in_ms:%d, philo_no_%d, %s\n", time, p->id, str);
 	sem_post(p->data->speak);
 }
@@ -80,21 +73,29 @@ void	*is_dead2(void *ptr)
 	while (1)
 	{
 		sem_wait(ph->data->meal_check);
-		if (((get_time() - ph->leat) > ph->data->die_time && ph->leat != 0) || \
-			((get_time() - ph->f_init) > \
-				ph->data->die_time && ph->f_init != 0))
+		if ((get_time() - ph->leat) > ph->data->die_time && ph->leat != 0)
 		{
-			usleep(1500);
 			msg(get_time(), "died", ph);
+			sem_wait(ph->data->death);
 			ph->data->someone_died = 1;
+			sem_post(ph->data->death);
 			exit(1);
 		}
 		sem_post(ph->data->meal_check);
 		if (ph->data->someone_died)
 			break ;
-		usleep(1000);
-		if (ph->eat_count >= ph->data->notepme && ph->data->notepme != -1)
-			break ;
+		sem_wait(ph->data->death);
+		if (ph->eat_count == ph->data->notepme && ph->data->notepme != -1)
+		{
+			ph->data->all_eat++;
+		}
+		sem_post(ph->data->death);
+		if (ph->data->all_eat == ph->data->n_philo)
+		{
+			sem_wait(ph->data->death);
+			ph->data->someone_died = 1;
+			sem_post(ph->data->death);
+		}
 	}
 	return (NULL);
 }

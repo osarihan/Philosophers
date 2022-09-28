@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/28 22:00:22 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:35:52 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 
 void	philo_eat(t_philo *p)
 {	
-	p->f_init = get_time();
-	if (p->data->someone_died > 0 || p->data->all_eat == p->data->n_philo)
+	if (death_lock(p) != 1)
 		exit(1);
 	sem_wait(p->data->forks);
-	msg(get_time(), "has taken a fork", p);
 	sem_wait(p->data->forks);
+	msg(get_time(), "has taken a fork", p);
 	msg(get_time(), "has taken a fork", p);
 	sem_wait(p->data->meal_check);
-	if (p->data->someone_died > 0 || p->data->all_eat == p->data->n_philo)
+	if (death_lock(p) != 1)
 		exit(1);
-	msg(get_time(), "is eating", p);
+	sem_wait(p->data->death);
 	p->leat = get_time();
 	p->eat_count++;
+	sem_post(p->data->death);
+	msg(get_time(), "is eating", p);
 	sem_post(p->data->meal_check);
 	sem_post(p->data->forks);
 	sem_post(p->data->forks);
@@ -35,18 +36,14 @@ void	philo_eat(t_philo *p)
 
 void	philo_think(t_philo *p)
 {
-	p->f_init = get_time();
-	if (p->dead != 0 || p->data->someone_died == 1 || \
-		p->data->all_eat == p->data->n_philo)
+	if (death_lock(p) != 1)
 		exit(1);
 	msg(get_time(), "Is thinking", p);
 }
 
 void	philo_sleep(t_philo *p)
 {
-	p->f_init = get_time();
-	if (p->dead != 0 || p->data->someone_died == 1 || \
-		p->data->all_eat == p->data->n_philo)
+	if (death_lock(p) != 1)
 		exit(1);
 	msg(get_time(), "is sleeping", p);
 	go_sleep(p->data->sleep_time);
@@ -61,8 +58,10 @@ void	cycle(void *p)
 	pthread_create(&(ph->death_check), NULL, is_dead2, p);
 	if (ph->id % 2 == 0)
 		go_sleep(ph->data->eat_time);
-	while (ph->data->someone_died == 0)
+	while (1)
 	{
+		if (death_lock(p) != 1)
+			exit(1);
 		philo_eat(ph);
 		philo_sleep(ph);
 		philo_think(ph);
