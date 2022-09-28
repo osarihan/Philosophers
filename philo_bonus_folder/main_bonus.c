@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/22 17:06:41 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:47:55 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,14 @@ int	main(int ac, char **av)
 	else
 		write(2, "Error\nArgumanlar hatali!\n", 26);
 	return (0);
+}
+
+void	one_philo(t_philo *p)
+{
+	sem_wait(p->data->forks);
+	msg(get_time(), "has taken a fork", p);
+	go_sleep(p->data->die_time);
+	msg(get_time(), "died", p);
+	sem_post(p->data->forks);
+	exit(0) ;
 }

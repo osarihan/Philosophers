@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/28 22:21:41 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:48:12 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ int				check_init_args(int argc, char **argv);
 void			kill_the_child(t_data *data);
 void			*is_dead2(void *ptr);
 int				death_lock(t_philo *p);
+void			one_philo(t_philo *p);
 #endif

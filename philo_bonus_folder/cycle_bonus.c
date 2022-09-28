@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/28 22:35:52 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:47:15 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	cycle(void *p)
 	pthread_create(&(ph->death_check), NULL, is_dead2, p);
 	if (ph->id % 2 == 0)
 		go_sleep(ph->data->eat_time);
+	if (ph->data->n_philo == 1)
+		one_philo(p);
 	while (1)
 	{
 		if (death_lock(p) != 1)
