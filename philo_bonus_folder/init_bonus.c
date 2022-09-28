@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:18 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/22 15:56:36 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/28 21:59:54 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,10 @@ void	forks(t_data *data)
 	sem_unlink("/philo_forks");
 	sem_unlink("/philo_speak");
 	sem_unlink("/philo_mealcheck");
+	sem_unlink("/philo_death");
 	data->forks = sem_open("/philo_forks", O_CREAT, S_IRWXU, data->n_philo);
 	data->speak = sem_open("/philo_speak", O_CREAT, S_IRWXU, 1);
 	data->meal_check = sem_open("/philo_mealcheck", O_CREAT, S_IRWXU, 1);
+	data->death = sem_open("/philo_death", O_CREAT, S_IRWXU, 1);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/21 12:37:56 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/28 22:00:22 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	philo_eat(t_philo *p)
 	p->leat = get_time();
 	p->eat_count++;
 	sem_post(p->data->meal_check);
+	sem_post(p->data->forks);
+	sem_post(p->data->forks);
 	go_sleep(p->data->eat_time);
-	sem_post(p->data->forks);
-	sem_post(p->data->forks);
 }
 
 void	philo_think(t_philo *p)
