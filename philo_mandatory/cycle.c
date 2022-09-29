@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/28 22:00:08 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:09:37 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	philo_eat(t_philo *p)
 	if (!death_lock(p))
 		return ;
 	msg (get_time(), "is eating", p);
+	go_sleep(p->data->eat_time);
 	pthread_mutex_unlock(&p->data->forks[p->l_fork]);
 	pthread_mutex_unlock(&p->data->forks[p->r_fork]);
-	go_sleep(p->data->eat_time);
 	return ;
 }
 

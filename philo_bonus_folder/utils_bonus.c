@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/28 22:37:16 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/29 11:56:19 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,17 @@ void	*is_dead2(void *ptr)
 	while (1)
 	{
 		sem_wait(ph->data->meal_check);
+		sem_wait(ph->data->death);
 		if ((get_time() - ph->leat) > ph->data->die_time && ph->leat != 0)
 		{
+			sem_post(ph->data->death);
 			msg(get_time(), "died", ph);
 			sem_wait(ph->data->death);
 			ph->data->someone_died = 1;
 			sem_post(ph->data->death);
 			exit(1);
 		}
+		sem_post(ph->data->death);
 		sem_post(ph->data->meal_check);
 		if (ph->data->someone_died)
 			break ;
