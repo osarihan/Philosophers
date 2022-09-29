@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:40:35 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/28 22:47:55 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/29 14:42:52 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	one_philo(t_philo *p)
 	go_sleep(p->data->die_time);
 	msg(get_time(), "died", p);
 	sem_post(p->data->forks);
-	exit(0) ;
+	exit(0);
 }
