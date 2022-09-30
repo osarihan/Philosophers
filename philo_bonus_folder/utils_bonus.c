@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/30 15:40:55 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/30 16:00:00 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,7 @@ void	*is_dead2(void *ptr)
 		if ((get_time() - ph->leat) > ph->data->die_time && ph->leat != 0)
 		{
 			msg(get_time(), "died", ph);
-			sem_wait(ph->data->death);
-			ph->data->someone_died = 1;
-			sem_post(ph->data->death);
+			make_some_died(ph->data);
 			exit(1);
 		}
 		sem_post(ph->data->meal_check);
@@ -90,9 +88,7 @@ void	*is_dead2(void *ptr)
 		sem_post(ph->data->death);
 		if (ph->data->all_eat == ph->data->n_philo)
 		{
-			sem_wait(ph->data->death);
-			ph->data->someone_died = 1;
-			sem_post(ph->data->death);
+			make_some_died(ph->data);
 		}
 	}
 	return (NULL);
