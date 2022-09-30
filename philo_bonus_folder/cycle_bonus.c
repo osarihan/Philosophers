@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 13:00:41 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/28 22:47:15 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:46:56 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	philo_eat(t_philo *p)
 	sem_post(p->data->death);
 	msg(get_time(), "is eating", p);
 	sem_post(p->data->meal_check);
-	sem_post(p->data->forks);
-	sem_post(p->data->forks);
 	go_sleep(p->data->eat_time);
+	sem_post(p->data->forks);
+	sem_post(p->data->forks);
 }
 
 void	philo_think(t_philo *p)

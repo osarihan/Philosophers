@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:56:01 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/28 22:37:16 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:40:55 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ void	*is_dead2(void *ptr)
 			break ;
 		sem_wait(ph->data->death);
 		if (ph->eat_count == ph->data->notepme && ph->data->notepme != -1)
-		{
 			ph->data->all_eat++;
-		}
 		sem_post(ph->data->death);
 		if (ph->data->all_eat == ph->data->n_philo)
 		{

@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:49:57 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/28 22:48:12 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:36:13 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ void			kill_the_child(t_data *data);
 void			*is_dead2(void *ptr);
 int				death_lock(t_philo *p);
 void			one_philo(t_philo *p);
+void			make_some_died(t_data *data);
 #endif

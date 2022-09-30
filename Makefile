@@ -24,8 +24,6 @@ re: fclean all
 race:
 	@$(CC) $(CFLAGS) $(RACEFLACGS) $(SRCS) -o philo_race
 
-racebonus:
-	@$(CC) $(CFLAGS) $(RACEFLACGS) $(SRCS_BONUS) -o bonus_race
 ##########################↑DATA RACE CHECK↑#####################################
 ##########################↓BONUS PART↓##########################################
 bonus: $(NAME_BONUS)
@@ -42,12 +40,11 @@ rebonus: fclean_bonus bonus
 fclean_all: fclean fclean_bonus
 	@rm -rf philo_race
 	@rm -rf bonus_race
-	@rm -rf bonus_race.dSYM
 	@rm -rf philo_race.dSYM
 
 compile_all: $(NAME) $(NAME_BONUS)
 	@$(CC) $(CFLAGS) $(RACEFLACGS) $(SRCS) -o philo_race
 	@$(CC) $(CFLAGS) $(RACEFLACGS) $(SRCS_BONUS) -o bonus_race
 
-.PHONY: all clean fclean re bonus fclean_bonus fclean_all rebonus racebonus race
+.PHONY: all clean fclean re bonus fclean_bonus fclean_all rebonus race
 ################################################################################

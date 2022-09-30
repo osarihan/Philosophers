@@ -6,7 +6,7 @@
 /*   By: osarihan <osarihan@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:12:51 by osarihan          #+#    #+#             */
-/*   Updated: 2022/09/28 22:32:20 by osarihan         ###   ########.fr       */
+/*   Updated: 2022/09/30 15:36:58 by osarihan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,12 @@ int	death_lock(t_philo *p)
 	}
 	sem_post(p->data->death);
 	return (1);
+}
+
+void	make_some_died(t_data *data)
+{
+	sem_wait(data->death);
+	data->someone_died = 1;
+	sem_post(data->death);
+	return ;
 }
