@@ -1,5 +1,7 @@
 Ecole 42 Philosophers
 
+!bonustaki processlerin ortak kullandıkları struct yapısı yanlış!
+
 ./philo 5 800 200 200 7 testinde düzgün sonuç vermiyor daha düzgün kod için : https://github.com/nosamanz
 
 Data race nedir?
